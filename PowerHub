@@ -420,6 +420,10 @@ FourthSection:NewButton("Kaizu", "Teleports you to the Kaizu Boss Island", funct
 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1589.06714, 215.999954, 9941.59766, -0.0209177006, -8.02182285e-08, -0.999781191, 4.7343427e-08, 1, -8.1226311e-08, 0.999781191, -4.90321348e-08, -0.0209177006)
 end)
 
+FourthSection:NewTextBox("Teleport to a player", "TP", function(value)
+	game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[""..value].Character.HumanoidRootPart.CFrame
+end)
+
 FourthSection:NewButton("Safe Place", "Teleports you to the Safe Place in the sky", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1000, 50000, 8000)
    baseplatee = Instance.new("Part", workspace)
