@@ -13,12 +13,30 @@ local Tab4 = Window:NewTab("Teleports")
 
 local Tab5 = Window:NewTab("BuyDrinks")
 
-local Tab6 = Window:NewTab("Gui")
+local Tab6 = Window:NewTab("Fruit")
+
+local Tab7 = Window:NewTab("Gui")
 
 local MainSection = Tab:NewSection("Select a method")
 
 local x = game.Players.LocalPlayer.UserId
 local haki = game:GetService("Workspace").UserData["User_"..x].Data.HakiLevel.Value
+
+MainSection:NewToggle("TpFruit", "Tps fruits", function(state)
+    if state then
+     _G.Tpfruit = true
+ while _G.Tpfruit do
+     task.wait()
+ for i,v in pairs(game:GetService("Workspace").Trees.Tree:GetDescendants()) do
+if v:IsA("ClickDetector") then
+fireclickdetector(v)
+end
+end
+end    
+    else
+        _G.Tpfruit = false
+    end
+end) 
 
 MainSection:NewToggle("Rare Box stealing", "TP any rare box dropped, into your inventory", function(state)
     if state then
@@ -84,20 +102,18 @@ end
 end)
 
 MainSection:NewButton("Collect your compass", "Gets ur compass from sam", function(state)
-workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer()
+
+local args = {
+    [1] = "Claim1"
+}
+
+workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer(unpack(args))
 end)
 
 MainSection:NewButton("Compass Location", "Teleports u towards ur compass's location", function(state)
-  if state then
-        _G.Autosam = true
-        while _G.Autosam do 
-            wait()
-               local user = tostring(game.Players.LocalPlayer.Name)
+local user = tostring(game.Players.LocalPlayer.Name)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players")[""..user].Backpack.Compass.Poser.Value)
-        end
-    else
-        _G.Autosam = false
-    end
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[""..user].Compass.Power.Value
 end)
 
 local SubSection = Tab2:NewSection("Good Stuff")
@@ -217,27 +233,33 @@ workspace.UserData["User_"..plrid].III:FireServer(unpack(args))
 end
 end)
 
+ThirdSection:NewButton("Auto Buso", "Auto uses buso at a perfect amount for wars and farming", function(state)
+    _G.AutoBuso = true
+    local plr = tostring(game.Players.LocalPlayer)
+    local plrid = tostring(game.Players.LocalPlayer.UserId)
+    local haki = game:GetService("Workspace").UserData["User_"..plrid].Data.HakiLevel.Value
+    
+    while _G.AutoBuso do
+    wait()
+    workspace.UserData["User_"..plrid].UpdateHaki:FireServer()
+    repeat wait() until  game.Players[""..plr].PlayerGui.HealthBar.Frame.Haki.Frame.Min.Value == 0 do
+    end
+    repeat wait() until  game.Players[""..plr].PlayerGui.HealthBar.Frame.Haki.Frame.Min.Value == haki do
+    end
+    end
+end)
+
 ThirdSection:NewToggle("Auto Barrels", "Auto clicks all barrels", function(state)
     if state then
-        _G.mix2 = true
-while _G.mix2 do 
-wait(0.5)
-for i,v in pairs(game:GetService("Workspace").Barrels.Barrels:GetDescendants()) do
+        _G.Mixer = true
+        while _G.Mixer do
+            task.wait()
+for i,v in pairs(game:GetService("Workspace").Barrels:GetDescendants()) do
 if v:IsA("ClickDetector") then
 fireclickdetector(v)
 end
 end
-end
-    else
-       _G.mix2 = false
-    end
-end)
-
-ThirdSection:NewToggle("Auto Mixer", "Auto Mix's drinks so you can max stats", function(state)
-    if state then
-        _G.mix = true
-while _G.mix do 
-wait(3)
+wait()
 for i,v in pairs(game:GetService("Workspace").Island8.Kitchen:GetDescendants()) do
 if v:IsA("ClickDetector") then
 fireclickdetector(v)
@@ -245,7 +267,7 @@ end
 end
 end
     else
-       _G.mix = false
+       _G.Mixer = false
     end
 end)
 
@@ -253,18 +275,21 @@ ThirdSection:NewToggle("Auto Drink", "Auto Drinks juices", function(state)
     if state then
         _G.Using = true
 while _G.Using do
+    wait(0.5)  
+pcall(function()
 local Players = game:GetService("Players")
 local Lp = Players.LocalPlayer
 local Character = Lp.Character or Lp.CharacterAdded:Wait()
 local Humanoid = Character.Humanoid
 local user = tostring(game.Players.LocalPlayer.Name)
 for i,v in pairs(Lp.Backpack:GetChildren()) do 
-    if v:IsA("Tool") and string.find(v.Name, "Fruit Juice") or string.find(v.Name, "Apple Juice") or string.find(v.Name, "Banana Juice") or string.find(v.Name, "Pumkin Juice") or string.find(v.Name, "Coconut Milk") or string.find(v.Name, "Sour Juice") or string.find(v.Name, "Cider+") or string.find(v.Name, "Juice+") or string.find(v.Name, "Smoothie+") or string.find(v.Name, "Lemonade+") then  
+    if v:IsA("Tool") and string.find(v.Name, "Juice") or string.find(v.Name, "Cider") or string.find(v.Name, "Milk")  or string.find(v.Name, "+")  or string.find(v.Name, "Smoothie") or string.find(v.Name, "Lemonade") or string.find(v.Name, "Golden") then  
         Humanoid:EquipTool(v)
         v:Activate()
         wait()
     end 
 end 
+end)
 end
 else
         _G.Using = false
@@ -435,21 +460,32 @@ end)
 
 local fithSection = Tab5:NewSection("Select a drink to buy")
 
-fithSection:NewButton("Sniper+", "Makes you buy a Lemonade+ drink", function()
-    game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Lemonade+")
+fithSection:NewTextBox("Sniper+", "Makes you buy a Lemonade+ drink", function(text)
+    for i = 1,(text) do
+        wait(0.1)
+        game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Lemonade+")
+        end
 end)
 
-fithSection:NewButton("Melee+", "Makes you buy a Melee+ drink", function()
-    game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Cider+")
-
+fithSection:NewTextBox("Melee+", "Makes you buy a Melee+ drink", function(text)
+    for i = 1,(text) do
+        wait(0.1)
+        game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Cider+")
+        end
 end)
 
-fithSection:NewButton("Sword+", "Makes you buy a Sword+ drink", function()
-    game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Juice+")
+fithSection:NewTextBox("Sword+", "Makes you buy a Sword+ drink", function(text)
+    for i = 1,(text) do
+        wait(0.1)
+        game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Juice+")
+        end
 end)
 
-fithSection:NewButton("Defense+", "Makes you buy a Defense+ drink", function()
-    game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Smoothie+")
+fithSection:NewTextBox("Defense+", "Makes you buy a Defense+ drink", function(text)
+    for i = 1,(text) do
+        wait(0.1)
+        game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer("Smoothie+")
+        end
 end)
 
 SubSection:NewToggle("Auto Respawn cave docks", "automatically respawns you at cave docks", function(state)
@@ -457,13 +493,29 @@ SubSection:NewToggle("Auto Respawn cave docks", "automatically respawns you at c
         _G.name = true
 while _G.name do 
 wait(4)
-spawn(function()
-if game.Players.LocalPlayer.Character.Humanoid.Health == 0 
-then wait(6)
-game:GetService("Players").LocalPlayer.Character.Weapons:FireServer()
-game:GetService("Players").LocalPlayer.Character.CharacterTrait.ClothingTrigger:FireServer()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-128.048264, 215.999954, -753.320984, 0.999702752, -1.25554733e-09, 0.0243795477, 4.81836904e-10, 1, 3.17419158e-08, -0.0243795477, -3.17207345e-08, 0.999702752)
-end
+local Players = game:GetService("Players")
+local Lp = Players.LocalPlayer
+local Character = Lp.Character or Lp.CharacterAdded:Wait()
+local Humanoid = Character:FindFirstChild("Humanoid")
+Humanoid.Died:Connect(function()
+    local Character = Lp.CharacterAdded:Wait()
+    local WeaponRemote = Character:WaitForChild("Weapons")
+    local CharacterTrait = Character:WaitForChild("CharacterTrait")
+    local ClothingRemote = CharacterTrait:WaitForChild("ClothingTrigger")
+    WeaponRemote:FireServer()
+    ClothingRemote:FireServer()
+    Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-128.048264, 215.999954, -753.320984, 0.999702752, -1.25554733e-09, 0.0243795477, 4.81836904e-10, 1, 3.17419158e-08, -0.0243795477, -3.17207345e-08, 0.999702752)
+end)
+Lp.CharacterAdded:Connect(function(Char)
+    Char:WaitForChild("Humanoid").Died:Connect(function()
+    local Character = Lp.CharacterAdded:Wait()
+    local WeaponRemote = Character:WaitForChild("Weapons")
+    local CharacterTrait = Character:WaitForChild("CharacterTrait")
+    local ClothingRemote = CharacterTrait:WaitForChild("ClothingTrigger")
+    WeaponRemote:FireServer()
+    ClothingRemote:FireServer()
+    Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-128.048264, 215.999954, -753.320984, 0.999702752, -1.25554733e-09, 0.0243795477, 4.81836904e-10, 1, 3.17419158e-08, -0.0243795477, -3.17207345e-08, 0.999702752)
+    end)
 end)
 end
     else
@@ -474,21 +526,24 @@ end)
 SubSection:NewToggle("Auto compass", "Flicks through compasses", function(state)
     if state then
         _G.Yes = true
-while _G.Yes do
-local Players = game:GetService("Players")
-local Lp = Players.LocalPlayer
-local Character = Lp.Character or Lp.CharacterAdded:Wait()
-local Humanoid = Character.Humanoid
-local user = tostring(game.Players.LocalPlayer.Name)
-for i,v in pairs(Lp.Backpack:GetChildren()) do 
-    if v:IsA("Tool") and string.find(v.Name, "Compass") then 
-        Humanoid:EquipTool(v)
-        v:Activate()
-        wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players")[""..user].Backpack.Compass.Poser.Value)
-    end 
-end 
-end
+        while _G.Yes do
+            wait()
+        pcall(function()
+        local Players = game:GetService("Players")
+        local Lp = Players.LocalPlayer
+        local Character = Lp.Character or Lp.CharacterAdded:Wait()
+        local Humanoid = Character.Humanoid
+        local user = tostring(game.Players.LocalPlayer.Name)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players")[""..user].Backpack.Compass.Poser.Value)
+        for i,v in pairs(Lp.Backpack:GetChildren()) do 
+            if v:IsA("Tool") and string.find(v.Name, "Compass") then 
+                Humanoid:EquipTool(v)
+                v:Activate()
+                wait()
+            end 
+        end 
+        end)
+        end
 else
         _G.Yes = false
     end
@@ -516,8 +571,177 @@ else
     end
 end)
 
-local SixthSection = Tab6:NewSection("Gui Settings")
+SubSection:NewToggle("Dark Vortex", "Auto uses dark vortex for farming", function(state)
+    if state then
+        _G.AutoDark = true
+while _G.AutoDark do
+    wait()
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Dark)
+    local v = x.VTC
+local args = {
+    [1] = v,
+    [2] = "DarkPower8",
+    [3] = "Create",
+    [4] = CFrame.new(Vector3.new(-274.5000305175781, 225.91897583007812, -506.1360778808594), Vector3.new(-0.5358331203460693, 0.01048304419964552, 0.8442589044570923)),
+    [5] = workspace.StoneBridge.Beach
+}
 
-SixthSection:NewKeybind("Hide gui", "Press P or set your own Keybind, by clicking the P icon", Enum.KeyCode.P, function()
+game:GetService("Players").LocalPlayer.Character.Powers.Dark.RemoteEvent:FireServer(unpack(args))
+end
+else
+        _G.AutoDark = false
+    end
+end)
+
+SubSection:NewToggle("Drown", "Kills u for farming purposes", function(state)
+    if state then
+        _G.AutoDrown = true
+while _G.AutoDrown do
+    wait(500)
+    spawn(function()
+    for i = 1,100 do
+local args = {
+    [1] = "NOPLS"
+}
+
+game:GetService("Players").LocalPlayer.Character.Drown:FireServer(unpack(args))
+end
+end)
+end
+else
+        _G.AutoDrown = false
+    end
+end)
+
+SubSection:NewButton("Infinite Yield", "Bring ups infinite yield", function(state)
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+end)
+local GuiSettingsSection = Tab7:NewSection("Gui Settings")
+
+GuiSettingsSection:NewKeybind("Hide gui", "Press P or set your own Keybind, by clicking the P icon", Enum.KeyCode.P, function()
     Library:ToggleUI()
 end)
+
+local Fruit = Tab6:NewSection("Fruit Spams and more")
+
+Fruit:NewTextBox("Rumble Elthor", "Auto Aims on written player", function(value)
+    local target = tostring(value)
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Rumble)
+    local v = x.VTC
+    while wait(3) do
+    local args = {
+        [1] = v,
+        [2] = "RumblePower2",
+        [3] = "StopCharging",
+        [4] = workspace[""..target].HumanoidRootPart.Position,
+        [5] = workspace[""..target].HumanoidRootPart,
+        [6] = 200,
+        [7] = Vector3.new(122.6904525756836, 217.49993896484375, -697.1806030273438)
+    }
+    
+    game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(unpack(args))
+    end
+  end)
+
+  Fruit:NewTextBox("Rumble Blitz", "Auto Aims on written player", function(value)
+    local target = tostring(value)
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Rumble)
+    local v = x.VTC
+    while wait(0.5) do
+    spawn(function()
+    local args = {
+        [1] = v,
+        [2] = "RumblePower3",
+        [3] = "StopCharging",
+        [4] = workspace[""..target].HumanoidRootPart.Position,
+        [5] = workspace[""..target].HumanoidRootPart,
+        [6] = 80,
+        [7] = Vector3.new(122.6904525756836, 217.49993896484375, -697.1806030273438)
+    }
+    
+    game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(unpack(args))
+    end)
+    end
+  end)
+
+ Fruit:NewToggle("Rumble Overload", "No CD Overload", function(state)
+
+    if state then
+        _G.AutOver = true
+while _G.AutOver do
+    wait()
+ local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Rumble)
+ local v = x.VTC
+ local args = {
+        [1] = v,
+        [2] = "RumblePower4",
+        [3] = "Create",
+    }
+    
+    game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(unpack(args))
+end
+else
+        _G.AutOver = false
+    end
+end)
+
+
+Fruit:NewTextBox("Ope Stun", "Auto Aims on written player", function(value)
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Ope)
+    local v = x.VTC
+    local viet = tostring(value)
+    local plr = game:GetService("Players").LocalPlayer
+    plr.Character.Powers.Ope.RemoteEvent:FireServer(v,"OpePower10",workspace[""..viet].Torso,workspace[""..viet].Torso.CFrame,plr.Character.Torso.Position)
+end)
+  
+Fruit:NewTextBox("Constant Ope Stun", "Auto Aims on written player", function(value)
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Ope)
+    local v = x.VTC
+    local viet = tostring(value)
+    local plr = game:GetService("Players").LocalPlayer
+    while wait() do
+    plr.Character.Powers.Ope.RemoteEvent:FireServer(v,"OpePower10",workspace[""..viet].Torso,workspace[""..viet].Torso.CFrame,plr.Character.Torso.Position)
+    end
+end)
+
+  Fruit:NewTextBox("Light Blast", "Auto Aims on written player", function(value)
+    local target = tostring(value)
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Light)
+    local v = x.VTC
+    while wait(0) do
+   pcall(function()
+    local args = {
+        [1] = v,
+        [2] = "LightPower2",
+        [3] = "StopCharging",
+        [4] = workspace[""..target].HumanoidRootPart.CFrame,
+        [5] = workspace[""..target].HumanoidRootPart,
+        [6] = 100,
+        [7] = Vector3.new(122.6904525756836, 217.49993896484375, -697.1806030273438)
+    }
+    
+    game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(unpack(args))
+    end)
+    end
+  end)
+
+  Fruit:NewTextBox("Gum Auto Aim", "Auto Aims on written player", function(value)
+    local target = tostring(value)
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Gum)
+    local v = x.VTC
+    while wait(0) do
+   pcall(function()
+    local args = {
+        [1] = v,
+        [2] = "GumPower3",
+        [3] = "0",
+        [4] = workspace[""..target].HumanoidRootPart.CFrame,
+        [5] = workspace[""..target].HumanoidRootPart,
+    }
+    
+    game:GetService("Players").LocalPlayer.Character.Powers.Gum.RemoteEvent:FireServer(unpack(args))
+    end)
+    end
+  end)
+  
+      
