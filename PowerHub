@@ -248,23 +248,57 @@ ThirdSection:NewButton("Auto Buso", "Auto uses buso at a perfect amount for wars
     end
     end
 end)
-
 ThirdSection:NewToggle("Auto Barrels", "Auto clicks all barrels", function(state)
     if state then
-        _G.Mixer = true
-        while _G.Mixer do
-            task.wait()
+         _G.AutoMixer = true
+local user = tostring(game.Players.LocalPlayer.Name)
+local StoredLocation = game.workspace[""..user].HumanoidRootPart.CFrame 
+
+spawn(function()
+local plrid = tostring(game.Players.LocalPlayer.UserId)
+local plr = tostring(game.Players.LocalPlayer)
+while _G.AutoMixer do
+wait()
+pcall(function()
+repeat task.wait() until game.Players[""..plr].PlayerGui.Challenges.Frame.Frame.ChallengesFrame.ScrollingFrame["Challenge_13"].Claim.AutoButtonColor == true
+workspace.UserData["User_"..plrid].ChallengesRemote:FireServer("Claim","Challenge13")
+workspace.UserData["User_"..plrid].ChallengesRemote:FireServer("Claim","Challenge14")
+end)
+end
+end)
+
+function amongus()
 for i,v in pairs(game:GetService("Workspace").Barrels:GetDescendants()) do
 if v:IsA("ClickDetector") then
 fireclickdetector(v)
 end
 end
-wait()
 for i,v in pairs(game:GetService("Workspace").Island8.Kitchen:GetDescendants()) do
 if v:IsA("ClickDetector") then
 fireclickdetector(v)
 end
 end
+end
+
+while _G.AutoMixer do
+pcall(function()
+for i,v in pairs(game:GetService("Workspace").Barrels.Barrels:GetDescendants()) do
+if v.Name == "Barrel" then
+game.workspace[""..user].HumanoidRootPart.CFrame = v.CFrame + Vector3.new(0, 5, 0)
+amongus()
+wait(0.1)
+end
+end
+for i,v in pairs(game:GetService("Workspace").Barrels:GetDescendants()) do
+if v.Name == "Crate" then
+game.workspace[""..user].HumanoidRootPart.CFrame = v.CFrame + Vector3.new(0, 5, 0)
+amongus()
+wait(0.1)
+end
+end
+game.workspace[""..user].HumanoidRootPart.CFrame = StoredLocation
+end)
+wait(15)
 end
     else
        _G.Mixer = false
