@@ -631,7 +631,7 @@ SubSection:NewToggle("Drown", "Kills u for farming purposes", function(state)
     if state then
         _G.AutoDrown = true
 while _G.AutoDrown do
-    wait(500)
+    wait(0.5)
     spawn(function()
     for i = 1,100 do
 local args = {
