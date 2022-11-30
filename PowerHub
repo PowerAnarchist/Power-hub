@@ -627,6 +627,31 @@ else
     end
 end)
 
+SubSection:NewToggle("Yoru Spam", "Spams Yoru m1", function(state)
+    if state then
+        _G.Yoru = true
+        local Players = game:GetService("Players")
+        local Plr = Players.LocalPlayer
+        local Character = Plr.Character
+        local Yoru = Character:FindFirstChild("Yoru")
+        local Environment
+while _G.Yoru do
+    wait()
+    pcall(function()
+    for i,v in pairs(getconnections(Yoru["RequestAnimation"].OnClientEvent)) do 
+        Environment = getsenv(Yoru["AnimationController"])
+    end
+        wait()
+    for i = 1, 25 do
+    Yoru["RequestAnimation"]:FireServer(Environment.PlaceId)
+    end
+    end)
+    end
+else
+        _G.Yoru = false
+    end
+end)
+
 SubSection:NewToggle("Drown", "Kills u for farming purposes", function(state)
     if state then
         _G.AutoDrown = true
@@ -777,5 +802,3 @@ end)
     end)
     end
   end)
-  
-      
