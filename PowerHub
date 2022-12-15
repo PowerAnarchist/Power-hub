@@ -611,7 +611,7 @@ SubSection:NewToggle("Dark Vortex", "Auto uses dark vortex for farming", functio
 while _G.AutoDark do
     wait()
     local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Dark)
-    local v = x.VTC
+    local v = x.VTCjebaj
 local args = {
     [1] = v,
     [2] = "DarkPower8",
