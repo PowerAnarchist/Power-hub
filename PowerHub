@@ -83,14 +83,20 @@ else
  end
 end)
 
-FFarmingSection2:NewToggle("Quake Farm" , "Kills a few NPCS", function(state)
+FFarmingSection2:NewToggle("Quake Farm" , "Kills every NPCS", function(state)
 if state then
 _G.AutoQuake = true
 local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Quake)
 local v = x.VTCebvc
 while _G.AutoQuake do
     wait(1)
-    game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(v,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,CFrame.new(Vector3.new(4571.556640625, 217, 5285.88232421875), Vector3.new(-0.15088123083114624, -0.24377816915512085, 0.9580225348472595)),100,Vector3.new(-290.4129333496094, 266.8401794433594, -103.8988037109375))
+    game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(v,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,CFrame.new(Vector3.new(-1848.4346923828125, 222, -450.0833740234375), Vector3.new(-0.5347824096679688, -0.43560168147087097, -0.7240573167800903)),100,Vector3.new(-1613.3062744140625, 218.5951385498047, -300.0502014160156))
+    wait(0.5)
+    game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(v,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,CFrame.new(Vector3.new(-1898.96728515625, 225.03367614746094, -200.6829071044922), Vector3.new(-0.9484627842903137, -0.18392488360404968, 0.25805023312568665)),100,Vector3.new(-1613.3062744140625, 218.5951385498047, -300.0502014160156))
+    wait(0.5)
+    game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(v,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,CFrame.new(Vector3.new(-1749.58203125, 224.88922119140625, -134.49240112304688), Vector3.new(-0.6882264614105225, -0.40487319231033325, 0.6020150184631348)),100,Vector3.new(-1613.3062744140625, 218.5951385498047, -300.0502014160156))
+    wait(0.5)
+    game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(v,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,CFrame.new(Vector3.new(-1622.5482177734375, 225.85337829589844, -200.26828002929688), Vector3.new(-0.3189719319343567, -0.7127735018730164, 0.6246685981750488)),100,Vector3.new(-290.4129333496094, 266.8401794433594, -103.8988037109375))
     wait(0.5)
     game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(v,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,CFrame.new(Vector3.new(1002.1565551757812, 214, 3349.3857421875), Vector3.new(-0.2978745698928833, -0.6442758440971375, 0.7044001221656799)),100,Vector3.new(-290.4129333496094, 266.8401794433594, -103.8988037109375))
     wait(0.5)
