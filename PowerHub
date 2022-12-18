@@ -31,7 +31,14 @@ _G.AutoRumble = true
 local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Rumble)
 local v = x.VTCzyhf
 while _G.AutoRumble do
-    wait(3)
+    wait(8)
+game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-991.578857421875, 217.1343994140625, 1664.7615966796875),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
+game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-1053.3848876953125, 217.19288635253906, 1681.0531005859375),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
+game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-1055.0928955078125, 218.02655029296875, 1663.1973876953125),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
+game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-1053.102294921875, 217.51536560058594, 1646.76416015625),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
+game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-906.1535034179688, 216.06491088867188, 1623.90380859375),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
+game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-1012.9547119140625, 324.14837646484375, 1688.389404296875),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
+game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-984.7723999023438, 283, 1613.73681640625),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
 game:GetService("Players").LocalPlayer.Character.Powers.Rumble.RemoteEvent:FireServer(v,"RumblePower8","StopCharging",Vector3.new(-1037.58544921875, 215.7229461669922, 1508.449951171875),workspace.Enemies:FindFirstChild("Lv17 Thug").HumanoidRootPart,200,Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317))
  end
 else
