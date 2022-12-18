@@ -35,6 +35,14 @@ local dropdown =  KPSection:NewDropdown("Select Player", "", PLRS, function(f)
     Choose2 = f
 end)
 
+KPSection:NewButton("Refresh PLR List", "Refreshes Dropdown", function(aa)
+    local PLRS = {}
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(PLRS,v.Name)
+    end
+    dropdown:Refresh(PLRS)
+    end)
+
 KPSection3:NewToggle("Light Spam" , "Kills Player", function(state)
     if state then
     _G.AutoLight = true
