@@ -7,6 +7,7 @@ local Tab3 = Window:NewTab("Sam")
 local Tab4 = Window:NewTab("Drinks")
 local Tab5 = Window:NewTab("Farming")
 local Tab6 = Window:NewTab("FruitFarming")
+local Tab7 = Window:NewTab("Kill Players")
 
 local HakiSection = Tab:NewSection("Select a method")
 local TPSection = Tab2:NewSection("Teleports")
@@ -18,12 +19,37 @@ local FarmingSection3 = Tab5:NewSection("Extra")
 local FFarmingSection = Tab6:NewSection("Light Fruit")
 local FFarmingSection2 = Tab6:NewSection("Quake Fruit")
 local FFarmingSection3 = Tab6:NewSection("Rumble Fruit")
-
+local KPSection = Tab7:NewSection("Quake Fruit")
 
 local Settings = Window:NewTab("Settings")
 local SettingsSection = Settings:NewSection("Settings")
 local ColorSection = Settings:NewSection("Ui Color")
+local PLRS = {}
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(PLRS,v.Name)
+end
+----------------------------------- Kill Players
+local dropdown =  KPSection:NewDropdown("Select Player", "", PLRS, function(f)
+    Choose2 = f
+end)
 
+KPSection:NewToggle("Quake Spam" , "Kills Player", function(state)
+    if state then
+    _G.AutoQuake = true
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Quake)
+    local vp = x.VTCebvc
+    while _G.AutoQuake do
+        wait()
+        for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+            if v.Name == Choose2 then
+                game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(vp,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,v.HumanoidRootPart.CFrame,100,Vector3.new(-290.4129333496094, 266.8401794433594, -103.8988037109375))
+            end
+            end
+     end
+    else
+        _G.AutoQuake = false
+     end
+    end)
 ----------------------------------- FruitFarming
 FFarmingSection3:NewToggle("Rumble Farm3" , "Kills Krizma NPC's", function(state)
 if state then
@@ -610,10 +636,6 @@ end
 end)
 
 ----------------------------------- Teleport Section 2
-local PLRS = {}
-for i,v in pairs(game:GetService("Players"):GetChildren()) do
-    table.insert(PLRS,v.Name)
-end
 
 local dropdown =  TPSection:NewDropdown("Select Player", "", PLRS, function(rbrhrynr)
     Choose = rbrhrynr
