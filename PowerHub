@@ -19,7 +19,9 @@ local FarmingSection3 = Tab5:NewSection("Extra")
 local FFarmingSection = Tab6:NewSection("Light Fruit")
 local FFarmingSection2 = Tab6:NewSection("Quake Fruit")
 local FFarmingSection3 = Tab6:NewSection("Rumble Fruit")
-local KPSection = Tab7:NewSection("Quake Fruit")
+local KPSection = Tab7:NewSection("Players")
+local KPSection2 = Tab7:NewSection("Quake Fruit")
+local KPSection3 = Tab7:NewSection("Light Fruit")
 
 local Settings = Window:NewTab("Settings")
 local SettingsSection = Settings:NewSection("Settings")
@@ -33,7 +35,25 @@ local dropdown =  KPSection:NewDropdown("Select Player", "", PLRS, function(f)
     Choose2 = f
 end)
 
-KPSection:NewToggle("Quake Spam" , "Kills Player", function(state)
+KPSection3:NewToggle("Light Spam" , "Kills Player", function(state)
+    if state then
+    _G.AutoLight = true
+    local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Light)
+    local vp = x.VTCrv
+    while _G.AutoLight do
+        wait()
+        for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+            if v.Name == Choose2 then
+                game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(vp,"LightPower2", "StopCharging",v.HumanoidRootPart.CFrame,workspace.IslandCaver.Stones.Stone, 100)
+            end
+            end
+     end
+    else
+        _G.AutoLight = false
+     end
+    end)
+
+KPSection2:NewToggle("Quake Spam" , "Kills Player", function(state)
     if state then
     _G.AutoQuake = true
     local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Quake)
