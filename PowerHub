@@ -8,6 +8,8 @@ local Tab4 = Window:NewTab("Drinks")
 local Tab5 = Window:NewTab("Farming")
 local Tab6 = Window:NewTab("FruitFarming")
 local Tab7 = Window:NewTab("Kill Players")
+local Tab8 = Window:NewTab("Misc")
+
 
 local HakiSection = Tab:NewSection("Select a method")
 local TPSection = Tab2:NewSection("Teleports")
@@ -22,6 +24,7 @@ local FFarmingSection3 = Tab6:NewSection("Rumble Fruit")
 local KPSection = Tab7:NewSection("Players")
 local KPSection2 = Tab7:NewSection("Quake Fruit")
 local KPSection3 = Tab7:NewSection("Light Fruit")
+local MiscSection = Tab8:NewSection("Random Shit")
 
 local Settings = Window:NewTab("Settings")
 local SettingsSection = Settings:NewSection("Settings")
@@ -30,6 +33,25 @@ local PLRS = {}
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
     table.insert(PLRS,v.Name)
 end
+
+----------------------------------- Misc
+MiscSection:NewDropdown("Present", "Collect Chosen presents", {"Hourly Presents", "Daily Presents"}, function(AnF)
+    ChosenOne = AnF
+    end)
+
+MiscSection:NewTextBox("Present Amount", "Collects presents", function(text)
+    local plrid = tostring(game.Players.LocalPlayer.UserId)
+    for i = 1,(text) do
+    if ChosenOne == "Hourly Presents" then
+    wait()
+    workspace.UserData["User_"..plrid].ClaimRewardHourly:FireServer("RewardMark")
+    end
+    if ChosenOne == "Daily Presents" then
+        workspace.UserData["User_"..plrid].ClaimRewardDaily:FireServer("RewardMark")
+    end
+end
+    end)
+
 ----------------------------------- Kill Players
 local dropdown =  KPSection:NewDropdown("Select Player", "", PLRS, function(f)
     Choose2 = f
