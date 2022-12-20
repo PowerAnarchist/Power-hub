@@ -35,6 +35,36 @@ for i,v in pairs(game:GetService("Players"):GetChildren()) do
 end
 
 ----------------------------------- Misc
+MiscSection:NewButton("Anti-mod", "Kicks if a mod is in server or joins server", function()
+    local Pedo = {
+        1135910299,520944,43247021
+    }
+    
+    for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+        for _, v1 in pairs(Pedo) do
+            if v.UserId == v1 then
+                game:GetService("Players").LocalPlayer:Kick("Admin is in the server")
+            end
+        end
+    end
+    
+    game:GetService("Players").PlayerAdded:Connect(function(r)
+        for _, v in pairs(Pedo) do
+            if r.UserId == v then
+                game:GetService("Players").LocalPlayer:Kick("Admin has joined the server")
+            end
+        end
+    end)
+    end)
+
+MiscSection:NewButton("Affinity Gui", "Shows the affinity diviners gui so u can spin", function()
+    for i,v in pairs(game:GetService("Workspace").Merchants.AffinityMerchant:GetDescendants()) do
+    if v:IsA("ClickDetector") then
+    fireclickdetector(v)
+    end
+    end
+    end)
+
 MiscSection:NewDropdown("Present", "Collect Chosen presents", {"Hourly Presents", "Daily Presents"}, function(AnF)
     ChosenOne = AnF
     end)
