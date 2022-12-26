@@ -41,7 +41,7 @@ MiscSection:NewToggle("Anti-Stun", "Removes Stun", function(state)
     pcall(function()
         while _G.NoStun do
             wait()
-        game:GetService("Players").LocalPlayer["DF_Disabled"] = false
+game.Players.LocalPlayer.Character.DF_Disabled.Value = false
     end
 end)
 else
