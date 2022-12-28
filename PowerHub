@@ -9,6 +9,7 @@ local Tab5 = Window:NewTab("Farming")
 local Tab6 = Window:NewTab("FruitFarming")
 local Tab7 = Window:NewTab("Kill Players")
 local Tab8 = Window:NewTab("Misc")
+local Tab9 = Window:NewTab("Weapon Spams")
 
 
 local HakiSection = Tab:NewSection("Select a method")
@@ -16,7 +17,6 @@ local TPSection = Tab2:NewSection("Teleports")
 local SamSection = Tab3:NewSection("Sam Quests")
 local DrinkingSection = Tab4:NewSection("Drinks")
 local FarmingSection = Tab5:NewSection("Spawn")
-local FarmingSection2 = Tab5:NewSection("Yoru")
 local FarmingSection3 = Tab5:NewSection("Extra")
 local FFarmingSection = Tab6:NewSection("Light Fruit")
 local FFarmingSection2 = Tab6:NewSection("Quake Fruit")
@@ -25,6 +25,8 @@ local KPSection = Tab7:NewSection("Players")
 local KPSection2 = Tab7:NewSection("Quake Fruit")
 local KPSection3 = Tab7:NewSection("Light Fruit")
 local MiscSection = Tab8:NewSection("Random Shit")
+local WeaponSection1 = Tab9:NewSection("Yoru")
+local WeaponSection2 = Tab9:NewSection("Seastone Cestus")
 
 local Settings = Window:NewTab("Settings")
 local SettingsSection = Settings:NewSection("Settings")
@@ -34,14 +36,73 @@ for i,v in pairs(game:GetService("Players"):GetChildren()) do
     table.insert(PLRS,v.Name)
 end
 
+----------------------------------- Weapon Spams
+WeaponSection1:NewSlider("Yoru Speed", "Increase/Decrease", 50, 1, function(s) -- 50 (MaxValue) | 0 (MinValue)
+    Speed = s
+end)
+
+WeaponSection1:NewToggle("Yoru Spam", "Spams Yoru m1", function(state)
+    if state then
+        _G.Yoru = true
+        local Players = game:GetService("Players")
+        local Plr = Players.LocalPlayer
+        local Character = Plr.Character
+        local Yoru = Character:FindFirstChild("Yoru")
+        local Environment
+while _G.Yoru do
+    wait()
+    pcall(function()
+    for i,v in pairs(getconnections(Yoru["RequestAnimation"].OnClientEvent)) do 
+        Environment = getsenv(Yoru["AnimationController"])
+    end
+        wait()
+    for i = 1, Speed do
+    Yoru["RequestAnimation"]:FireServer(Environment.PlaceId)
+    end
+    end)
+    end
+else
+        _G.Yoru = false
+    end
+end)
+
+WeaponSection2:NewSlider("Seastone Speed", "Increase/Decrease", 50, 1, function(ss) -- 50 (MaxValue) | 0 (MinValue)
+    Speed2 = ss
+end)
+
+WeaponSection2:NewToggle("Seastone Spam", "Spams Seastone Cestus", function(state)
+    if state then
+        _G.Cestus = true
+        local Players = game:GetService("Players")
+        local Plr = Players.LocalPlayer
+        local Character = Plr.Character
+        local Cestus = Character:FindFirstChild("Seastone Cestus")
+        local Environment
+while _G.Cestus do
+    wait()
+    pcall(function()
+    for i,v in pairs(getconnections(Cestus["RequestAnimation"].OnClientEvent)) do 
+        Environment = getsenv(Cestus["AnimationController"])
+    end
+        wait()
+    for i = 1, Speed2 do
+    Cestus["RequestAnimation"]:FireServer(Environment.PlaceId)
+    end
+    end)
+    end
+else
+        _G.Cestus = false
+    end
+end)
 ----------------------------------- Misc
+
 MiscSection:NewToggle("Anti-Stun", "Removes Stun", function(state)
     if state then
         _G.NoStun = true
     pcall(function()
         while _G.NoStun do
             wait()
-game.Players.LocalPlayer.Character.DF_Disabled.Value = false
+        game:GetService("Players").LocalPlayer["DF_Disabled"] = false
     end
 end)
 else
@@ -429,34 +490,6 @@ FarmingSection:NewToggle("Auto Spawn", "Spawns you at Cave Docks Automatically",
 end)
 
 
-FarmingSection2:NewSlider("Yoru Speed", "Increase/Decrease", 50, 0, function(s) -- 50 (MaxValue) | 0 (MinValue)
-    Speed = s
-end)
-
-FarmingSection2:NewToggle("Yoru Spam", "Spams Yoru m1", function(state)
-    if state then
-        _G.Yoru = true
-        local Players = game:GetService("Players")
-        local Plr = Players.LocalPlayer
-        local Character = Plr.Character
-        local Yoru = Character:FindFirstChild("Yoru")
-        local Environment
-while _G.Yoru do
-    wait()
-    pcall(function()
-    for i,v in pairs(getconnections(Yoru["RequestAnimation"].OnClientEvent)) do 
-        Environment = getsenv(Yoru["AnimationController"])
-    end
-        wait()
-    for i = 1, Speed do
-    Yoru["RequestAnimation"]:FireServer(Environment.PlaceId)
-    end
-    end)
-    end
-else
-        _G.Yoru = false
-    end
-end)
 
 ----------------------------------- Drinks/Barrel Farming
 DrinkingSection:NewDropdown("The Drink", "Buys chosen drinks", {"Cider+", "Lemonade+", "Juice+", "Smoothie+"}, function(An)
