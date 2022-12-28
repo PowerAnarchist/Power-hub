@@ -852,6 +852,6 @@ for theme, color in pairs(colors) do
     end)
 end
 
-wait(2)
+wait(5)
 
 game:GetService("ReplicatedStorage").IV:FireServer()
