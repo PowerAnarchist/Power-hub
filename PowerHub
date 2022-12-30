@@ -851,7 +851,3 @@ for theme, color in pairs(colors) do
     Library:ChangeColor(theme, color3)
     end)
 end
-
-wait(5)
-
-game:GetService("ReplicatedStorage").IV:FireServer()
