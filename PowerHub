@@ -1,4 +1,31 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+ local listed = {
+        473129714 and "Void_87", -- Voids accounts
+        3824963995 and "V_01d0",
+        3558270921 and "V_0id01",
+        3848832393 and "V_0id02",
+        3403236193 and "Void_alt02",
+        2879306082 and "Void_alt01",
+        
+        1135910299 and "203Reaper", -- All my accounts
+        1958748579 and "203Demon",
+        2905499971 and "SenpaiiAmy",
+        200330824 and "harley336omg" 
+        
+    }
+    
+    _G.WhiteListed = false
+    
+    for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+        for _, v1 in pairs(listed) do
+            if v.UserId and v.Name == v1 then
+_G.WhiteListed = true
+            end
+        end
+        
+    end
+    
+if _G.WhiteListed then
+   local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("One Piece Legendary | Made by Power", "BloodTheme", colors)
 
 local Tab = Window:NewTab("Haki")
@@ -216,7 +243,7 @@ KPSection3:NewToggle("Light Spam" , "Kills Player", function(state)
     local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Light)
     local vp = x.VTCrv
     while _G.AutoLight do
-        wait()
+        wait(0.4)
         for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
             if v.Name == Choose2 then
                 game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(vp,"LightPower2", "StopCharging",v.HumanoidRootPart.CFrame,workspace.IslandCaver.Stones.Stone, 100)
@@ -851,3 +878,8 @@ for theme, color in pairs(colors) do
     Library:ChangeColor(theme, color3)
     end)
 end
+end  
+
+if _G.WhiteListed == false then 
+    game.Players.LocalPlayer:Kick("Fucking Buy the Script L. No whitelist?????? Join the discord then BOZO https://discord.gg/6tmxU7VVyJ")
+    end
