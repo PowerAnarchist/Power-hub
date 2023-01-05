@@ -9,8 +9,15 @@
         1135910299 and "203Reaper", -- All my accounts
         1958748579 and "203Demon",
         2905499971 and "SenpaiiAmy",
-        200330824 and "harley336omg" 
+        200330824 and "harley336omg",
         
+        1548517371 and "Autumn_Windfall", -- Fox's accounts
+        
+        3215246856 and "GomuGura", -- Brad's accounts
+        3215246856 and "itzzzmebrad3",
+        989289040 and "itzzzmebrad4",
+        989290717 and "itzzzmebrad5",
+        989293518 and "itzzzmebrad6"
     }
     
     _G.WhiteListed = false
