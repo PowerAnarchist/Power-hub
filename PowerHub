@@ -1,4 +1,4 @@
- local listed = {
+local listed = {
         473129714 and "Void_87", -- Voids accounts
         3824963995 and "V_01d0",
         3558270921 and "V_0id01",
@@ -397,12 +397,11 @@ else
 end)
 
 FFarmingSection:NewToggle("Light Farm" , "Kills a few NPCS", function(state)
+    if state then
     local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Light)
     local v = x.VTCrv
     _G.Light = true
     while _G.Light do 
-        pcall(function()
-    while wait(1) do
     game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(v,"LightPower2", "StopCharging",CFrame.new(Vector3.new(-988.4560546875, 283, 1616.5068359375), Vector3.new(-0.44781866669654846, -0.36267393827438354, 0.8172675371170044)),workspace.IslandCaver.Stones.Stone, 100)
     wait(0.5)
     game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(v,"LightPower2", "StopCharging",CFrame.new(Vector3.new(-1037.58544921875, 215.7229461669922, 1508.449951171875), Vector3.new(-0.7139230966567993, -0.5779988169670105, 0.39526084065437317)),workspace.IslandCaver.Stones.Stone, 100)
@@ -432,9 +431,10 @@ FFarmingSection:NewToggle("Light Farm" , "Kills a few NPCS", function(state)
     game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(v,"LightPower2", "StopCharging",CFrame.new(Vector3.new(-1432.3958740234375, 256.3514709472656, -1652.33984375), Vector3.new(0.007446270436048508, -0.6148971319198608, -0.7885722517967224)),workspace.IslandCaver.Stones.Stone, 100)
     wait(0.5)
     game:GetService("Players").LocalPlayer.Character.Powers.Light.RemoteEvent:FireServer(v,"LightPower2", "StopCharging",CFrame.new(Vector3.new(-1270.039794921875, 263.09088134765625, -1793.016357421875), Vector3.new(0.32165566086769104, -0.4306340515613556, -0.8432627320289612)),workspace.IslandCaver.Stones.Stone, 100)
-    end
-    end)
-    end
+ end
+else
+    _G.Light = false
+ end
 end)
 
 ----------------------------------- Farming
