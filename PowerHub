@@ -17,7 +17,8 @@ local listed = {
         3215246856 and "itzzzmebrad3",
         989289040 and "itzzzmebrad4",
         989290717 and "itzzzmebrad5",
-        989293518 and "itzzzmebrad6"
+        989293518 and "itzzzmebrad6",
+        3215643449 and "Anarchybrad"
     }
     
     _G.WhiteListed = false
