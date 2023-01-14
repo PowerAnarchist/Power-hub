@@ -10,6 +10,7 @@ local listed = {
         1958748579 and "203Demon",
         2905499971 and "SenpaiiAmy",
         200330824 and "harley336omg",
+        904259870 and "Powersimulatorfn",
         
         1548517371 and "Autumn_Windfall", -- Fox's accounts
         1624553792 and "thegodmouse",
@@ -166,6 +167,14 @@ MiscSection:NewButton("Anti-mod", "Kicks if a mod is in server or joins server",
             end
         end
     end)
+    end)
+
+MiscSection:NewButton("Expertise GUI", "Shows the Expertise GUI", function()
+    for i,v in pairs(game:GetService("Workspace").Merchants.ExpertiseMerchant:GetDescendants()) do
+    if v:IsA("ClickDetector") then
+    fireclickdetector(v)
+    end
+    end
     end)
 
 MiscSection:NewButton("Affinity Gui", "Shows the affinity diviners gui so u can spin", function()
