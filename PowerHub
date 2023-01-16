@@ -11,9 +11,10 @@ local listed = {
         2905499971 and "SenpaiiAmy",
         200330824 and "harley336omg",
         904259870 and "Powersimulatorfn",
+        1587442343 and "934v934NICETWIN",
         
         1548517371 and "Autumn_Windfall", -- Fox's accounts
-        2365318423 and "TheGodM0use",
+        1624553792 and "thegodmouse",
         
         3215246856 and "GomuGura", -- Brad's accounts
         3215246856 and "itzzzmebrad3",
@@ -132,6 +133,10 @@ else
     end
 end)
 ----------------------------------- Misc
+MiscSection:NewButton("Immortal", "Makes you immortal to all attacks but heart steal", function()
+local plr = game.Players.LocalPlayer.Name
+game:GetService("Workspace")[""..plr].Damage:Destroy()
+end)
 
 MiscSection:NewToggle("Anti-Stun", "Removes Stun", function(state)
     if state then
@@ -279,16 +284,18 @@ KPSection2:NewToggle("Quake Spam" , "Kills Player", function(state)
     local x = getsenv(game:GetService("Players").LocalPlayer.Character.Powers.Quake)
     local vp = x.VTCebvc
     while _G.AutoQuake do
-        wait(0.3)
+        wait(0)
+        pcall(function()
         for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
             if v.Name == Choose2 then
                 game:GetService("Players").LocalPlayer.Character.Powers.Quake.RemoteEvent:FireServer(vp,"QuakePower4", "StopCharging",workspace.IslandCaver.Stones.Stone,v.HumanoidRootPart.CFrame,100,Vector3.new(-290.4129333496094, 266.8401794433594, -103.8988037109375))
             end
-            end
-     end
+        end
+        end)
+        end
     else
         _G.AutoQuake = false
-     end
+    end
     end)
 ----------------------------------- FruitFarming
 FFarmingSection3:NewToggle("Rumble Farm3" , "Kills Krizma NPC's", function(state)
