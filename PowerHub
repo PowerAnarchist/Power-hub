@@ -12,6 +12,7 @@ local listed = {
         200330824 and "harley336omg",
         904259870 and "Powersimulatorfn",
         1587442343 and "934v934NICETWIN",
+        1211793753 and "Javier_DaMexican",
         
         1548517371 and "Autumn_Windfall", -- Fox's accounts
         1624553792 and "thegodmouse",
@@ -133,6 +134,7 @@ else
     end
 end)
 ----------------------------------- Misc
+
 MiscSection:NewButton("Immortal", "Makes you immortal to all attacks but heart steal", function()
 local plr = game.Players.LocalPlayer.Name
 game:GetService("Workspace")[""..plr].Damage:Destroy()
@@ -639,12 +641,14 @@ end
 end)
 
 ----------------------------------- Sam
-SamSection:NewTextBox("Collect Compass", "Collects ur comp", function(text)
-    for i = 1,(text) do
-        wait(0.1)
-    workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer("Claim1")
-end
+SamSection:NewButton("Collect all compass's", "Collects all compass's", function()
+workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer("Claim10")
 end)
+
+Sam:NewButton("Collect one compass", "Collects single compass", function()
+workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer("Claim1")
+end)
+
 
 SamSection:NewToggle("Compass Destination", "Tp's you to your compass destination", function(state)
     if state then
