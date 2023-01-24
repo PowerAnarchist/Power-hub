@@ -645,7 +645,7 @@ SamSection:NewButton("Collect all compass's", "Collects all compass's", function
 workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer("Claim10")
 end)
 
-Sam:NewButton("Collect one compass", "Collects single compass", function()
+SamSection:NewButton("Collect one compass", "Collects single compass", function()
 workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer("Claim1")
 end)
 
