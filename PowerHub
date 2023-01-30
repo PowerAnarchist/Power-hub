@@ -17,6 +17,7 @@ local listed = {
         1548517371 and "Autumn_Windfall", -- Fox's accounts
         1624553792 and "thegodmouse",
         3138191399 and "poeyzi",
+        1178993113 and "emboar2221alt",
         
         3215246856 and "GomuGura", -- Brad's accounts
         3215246856 and "itzzzmebrad3",
@@ -467,9 +468,9 @@ FarmingSection:NewToggle("Suicide", "Kills u for farming purposes", function(sta
     if state then
         _G.AutoDrown = true
 while _G.AutoDrown do
-    wait(0.5)
+    wait(1)
     spawn(function()
-    for i = 1,50 do
+    for i = 1,5 do
 local args = {
     [1] = "NOPLS"
 }
