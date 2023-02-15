@@ -521,7 +521,7 @@ end)
 FarmingSection:NewToggle("Auto Spawn", "Spawns you at Cave Docks Automatically", function(state)
     if state then
         _G.AutoSpawn = true
-        setfpscap(15)
+        setfpscap(30)
 while _G.AutoSpawn do 
 wait(4)
 local Players = game:GetService("Players")
