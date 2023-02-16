@@ -145,11 +145,6 @@ end
 end)
 ----------------------------------- Misc
 
-MiscSection:NewButton("Immortal", "Makes you immortal to all attacks but heart steal", function()
-local plr = game.Players.LocalPlayer.Name
-game:GetService("Workspace")[""..plr].Damage:Destroy()
-end)
-
 MiscSection:NewToggle("Anti-Stun", "Removes Stun", function(state)
 if state then
     _G.NoStun = true
