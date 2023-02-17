@@ -32,7 +32,10 @@ local listed = {
     
     150099196 and "UniversalOblivion",
     
-    428940874 and "huseyincicek01" --Cats Accounts
+    428940874 and "huseyincicek01", --Cats Accounts
+    
+    847736128 and "kingsallikingytytyt",
+    1823508858 and "0range_boss"
 }
 
 _G.WhiteListed = false
