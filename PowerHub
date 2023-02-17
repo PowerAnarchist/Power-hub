@@ -35,7 +35,13 @@ local listed = {
     428940874 and "huseyincicek01", --Cats Accounts
     
     847736128 and "kingsallikingytytyt", -- Sali's accounts
-    1823508858 and "0range_boss"
+    1823508858 and "0range_boss",
+    
+    76279360 and "bestgunmaster12", -- shorts accounts
+    353741274 and "bestgunmaster13",
+    1999198263 and "BellyPics",
+    2418928142 and "WhoStoleMyBreadBuns",
+    546103998 and "Animallover7437"
 }
 
 _G.WhiteListed = false
