@@ -1,4 +1,4 @@
-
+--No, I'm not an idiot. I'm aware anybody can see this, but if I obfuscate my script to make it private then the script breaks. Don't just copy n paste my script, learn from it.
 local listed = {
     473129714 and "Void_87", -- Voids accounts
     3824963995 and "V_01d0",
@@ -48,7 +48,12 @@ local listed = {
     847736128 and "kingsallikingytytyt", -- Sali's accounts
     1823508858 and "0range_boss",
     3285485732 and "0range_boss2",
-    1256978299 and "narwiz207"
+    1256978299 and "narwiz207",
+    
+    520944 and "Oblivic", --Harveys accounts
+    1135910299 and "Havelic",
+    
+    43247021 and "BowTiedPony" --Revs accounts
 }
 
 _G.WhiteListed = false
