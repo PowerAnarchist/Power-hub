@@ -53,8 +53,11 @@ local listed = {
     520944 and "Oblivic", --Harveys accounts
     1135910299 and "Havelic",
     
-    43247021 and "BowTiedPony" --Revs accounts
+    43247021 and "BowTiedPony", --Revs accounts
+    
+    2792667509 and "Drippynokia"
 }
+
 
 _G.WhiteListed = false
 
