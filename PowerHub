@@ -1,4 +1,15 @@
 --No, I'm not an idiot. I'm aware anybody can see this, but if I obfuscate my script to make it private then the script breaks. Don't just copy n paste my script, learn from it.
+
+print("AntiAfk Activated")
+local VirtualUser=game:service'VirtualUser'
+repeat
+wait()
+until game:GetService("Players").LocalPlayer ~= nil and game:GetService("Players").LocalPlayer.Idled ~= nil
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+VirtualUser:CaptureController()
+VirtualUser:ClickButton2(Vector2.new())
+end)
+
 local listed = {
     473129714 and "Void_87", -- Voids accounts
     3824963995 and "V_01d0",
