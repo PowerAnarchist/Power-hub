@@ -206,7 +206,7 @@ end)
 
 MiscSection:NewButton("Anti-mod", "Kicks if a mod is in server or joins server", function()
 local Pedo = {
-    1135910299,520944,43247021
+    1135910299,520944,43247021,679804290
 }
 
 for _, v in pairs(game:GetService("Players"):GetPlayers()) do
