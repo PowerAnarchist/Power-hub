@@ -34,7 +34,7 @@ local listed = {
     3427662472 and "GuestAltOPL5",
     3427663287 and "GuestAltOPL6",
     
-    3215246856 and "GomuGura", -- Brad's accounts
+     -- Brad's accounts
     3215246856 and "itzzzmebrad3",
     989289040 and "itzzzmebrad4",
     989290717 and "itzzzmebrad5",
@@ -42,6 +42,7 @@ local listed = {
     3215643449 and "Anarchybrad",
     989279597 and "inlyta",
     218082541 and "ToughThisIsAnAccount",
+    977187455 and "itzzzmebradspeak",
     
     150099196 and "UniversalOblivion",
     
